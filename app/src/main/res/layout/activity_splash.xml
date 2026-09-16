@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Floating Background Icons (Dotted/Line Art Context) -->
+    <!-- Note: You can add individual floating vector icons here using absolute alignment if needed -->
+
+    <!-- Center Content Container -->
+    <LinearLayout
+        android:id="@+id/centerContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomWaves"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.45">
+
+        <!-- Main Logo (Book + Paper Graphic) -->
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:contentDescription="IIIT PaperVault Logo"
+            android:src="@drawable/bg_image" />
+
+        <!-- App Name Main Title -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="IIIT PaperVault"
+            android:textColor="#0B1A30"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <!-- Decorative Horizontal Separator Line -->
+        <View
+            android:layout_width="60dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#1E88E5" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/subtitleText"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Your Gateway to Previous Year\nQuestion Papers"
+            android:textColor="#4A5568"
+            android:textSize="16sp"
+            android:lineSpacingMultiplier="1.2" />
+
+        <!-- Tagline -->
+        <TextView
+            android:id="@+id/taglineText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Find. Learn. Succeed."
+            android:textColor="#1E88E5"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05" />
+
+    </LinearLayout>
+
+    <!-- Bottom Wave Decorative Graphic -->
+    <ImageView
+        android:id="@+id/bottomWaves"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="fitXY"
+        android:contentDescription="Bottom Abstract Waves"
+        android:src="@drawable/bg_bottom_waves"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

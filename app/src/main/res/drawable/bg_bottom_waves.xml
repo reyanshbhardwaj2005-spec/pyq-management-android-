@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+android:width="360dp"
+android:height="220dp"
+android:viewportWidth="360"
+android:viewportHeight="220">
+
+<!-- 1. Top Background Wave (Lighter Blue) -->
+<path
+    android:fillColor="#2196F3"
+    android:alpha="0.7"
+    android:pathData="M0,100
+                          C90,60 160,160 260,120
+                          C310,100 340,110 360,120
+                          L360,220
+                          L0,220
+                          Z" />
+
+<!-- 2. Middle Wave (Medium Royal Blue) -->
+<path
+    android:fillColor="#1976D2"
+    android:alpha="0.85"
+    android:pathData="M0,130
+                          C70,110 130,190 220,140
+                          C290,100 330,130 360,145
+                          L360,220
+                          L0,220
+                          Z" />
+
+<!-- 3. Bottom Foreground Wave (Deep Blue) -->
+<path
+    android:fillColor="#0D47A1"
+    android:pathData="M0,160
+                          C80,140 110,210 190,165
+                          C270,120 320,160 360,170
+                          L360,220
+                          L0,220
+                          Z" />
+</vector>
