@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="brand_blue">#1565C0</color>
+    <color name="brand_blue_dark">#0D47A1</color>
+    <color name="screen_bg">#F5F7FA</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="card_stroke">#E3E8EF</color>
+    <color name="field_fill">#EEF3FB</color>
+    <color name="text_primary">#1A1F29</color>
+    <color name="text_secondary">#66707D</color>
+    <color name="badge_bg">#E3EEFC</color>
 </resources>

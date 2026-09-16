@@ -1,9 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.IIITQUESTIONBANK" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="ToolbarTitleAppearance" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
     </style>
 
     <style name="Theme.IIITQUESTIONBANK" parent="Base.Theme.IIITQUESTIONBANK" />
+
+    <style name="Base.Theme.IIITQUESTIONBANK" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_blue</item>
+        <item name="colorPrimaryDark">@color/brand_blue_dark</item>
+        <item name="colorSecondary">@color/brand_blue</item>
+        <item name="android:statusBarColor">@color/brand_blue_dark</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import com.example.iiitquestionbank.repository.PaperRepository;
 import com.example.iiitquestionbank.utils.PdfThumbnailUtil;
+import com.google.android.material.button.MaterialButton;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -97,7 +99,7 @@ public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.PaperViewHol
         TextView txtAcademicYear;
         TextView txtBranch;
         ImageView imgPreview;
-        ImageButton btnDownload;
+        MaterialButton btnDownload;
         public PaperViewHolder(@NonNull View itemView) {
             super(itemView);
 

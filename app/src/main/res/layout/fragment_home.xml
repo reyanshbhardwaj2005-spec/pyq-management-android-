@@ -1,43 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+    Aesthetic rework notes:
+    • Uses Material3 theme attributes (?attr/colorSurface, ?attr/colorOnSurface, etc.)
+      instead of hardcoded hex where possible, so it auto-adapts to light/dark mode
+      as long as your app theme extends Theme.Material3.*.DayNight (or you have a
+      values-night/colors.xml override). Where a fixed brand blue is needed, it's
+      defined via @color references — add these to res/values/colors.xml
+      (and res/values-night/colors.xml for the dark variants) as shown at the bottom.
+    • Dropdowns use the "ExposedDropdownMenu" filled style with rounded corners and
+      a soft translucent fill instead of a plain outline, so they read as "transparent
+      glassy" chips rather than boxy form fields.
+    • Header now has a subtle gradient chip behind the title + a colored accent bar.
+    • Search button uses an elevated, gradient-tinted pill with an icon.
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#F5F7FA">
+    android:background="@color/screen_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="32dp">
 
         <!-- Header -->
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📚 IIIT SONEPAT"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#1565C0" />
+            android:orientation="horizontal"
+            android:background="@drawable/bg_header_chip"
+            android:paddingStart="14dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📚"
+                android:textSize="22sp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IIIT SONEPAT"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Previous Year Question Papers"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_marginTop="4dp" />
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search verified papers uploaded by the institute."
             android:textSize="14sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="20dp" />
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp" />
 
         <!-- Filter Card -->
 
@@ -45,24 +85,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="@android:color/white">
+            app:cardCornerRadius="24dp"
+            app:cardElevation="10dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/card_stroke"
+            app:cardBackgroundColor="@color/card_bg">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="22dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Search Filters"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="#1565C0"
-                    android:layout_marginBottom="20dp"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="18dp"
+                        android:background="@drawable/bg_accent_bar"
+                        android:layout_marginEnd="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search Filters"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_primary"/>
+
+                </LinearLayout>
 
                 <!-- Semester -->
 
@@ -70,18 +126,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Semester"
-                    android:textStyle="bold"/>
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="6dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Semester"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    android:hint="Select semester"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/field_fill"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="@color/brand_blue"
+                    app:hintTextColor="@color/brand_blue"
+                    android:textColorHint="@color/text_secondary"
+                    app:endIconTint="@color/brand_blue"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
                         android:id="@+id/spinnerSemester"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
                         android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -92,19 +164,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Examination Type"
+                    android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="18dp"/>
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Examination Type"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    android:hint="Select exam type"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/field_fill"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="@color/brand_blue"
+                    app:hintTextColor="@color/brand_blue"
+                    android:textColorHint="@color/text_secondary"
+                    app:endIconTint="@color/brand_blue"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
                         android:id="@+id/spinnerExamType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
                         android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -115,19 +203,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Academic Year"
+                    android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="18dp"/>
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Academic Year"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    android:hint="Select academic year"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/field_fill"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="@color/brand_blue"
+                    app:hintTextColor="@color/brand_blue"
+                    android:textColorHint="@color/text_secondary"
+                    app:endIconTint="@color/brand_blue"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
                         android:id="@+id/spinnerAcademicYear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
                         android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -138,19 +242,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Branch"
+                    android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="18dp"/>
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="6dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Branch"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                    android:hint="Select branch"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/field_fill"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="1.5dp"
+                    app:boxStrokeColor="@color/brand_blue"
+                    app:hintTextColor="@color/brand_blue"
+                    android:textColorHint="@color/text_secondary"
+                    app:endIconTint="@color/brand_blue"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
                         android:id="@+id/spinnerBranch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
                         android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -161,13 +281,18 @@
                     android:id="@+id/btnSearch"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:layout_marginTop="28dp"
-                    android:text="🔍 SEARCH PAPERS"
+                    android:layout_marginTop="30dp"
+                    android:text="Search Papers"
                     android:textAllCaps="false"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    app:icon="@android:drawable/ic_menu_search"
+                    app:iconGravity="textStart"
+                    app:iconTint="@android:color/white"
                     app:cornerRadius="28dp"
-                    app:backgroundTint="#1565C0"
+                    app:backgroundTint="@color/brand_blue"
+                    app:rippleColor="@color/brand_blue_dark"
+                    android:elevation="4dp"
                     android:textColor="@android:color/white"/>
 
             </LinearLayout>
@@ -181,6 +306,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:indeterminateTint="@color/brand_blue"
             android:visibility="gone"/>
 
     </LinearLayout>

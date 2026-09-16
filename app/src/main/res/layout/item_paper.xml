@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+    Uses the same @color tokens as the rest of the app (brand_blue, card_bg,
+    card_stroke, text_primary, text_secondary) so this card auto-adapts to
+    dark mode. Extra resources this file needs are listed in the comment
+    block at the bottom (bg_preview_placeholder, bg_download_button,
+    ic_calendar / ic_branch small icons — optional but recommended).
+-->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,9 +13,16 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="8dp"
-    app:cardCornerRadius="18dp"
-    app:cardElevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/card_stroke"
+    app:cardBackgroundColor="@color/card_bg"
+    app:rippleColor="@color/brand_blue"
+    app:cardUseCompatPadding="true"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,65 +43,104 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="#212121"
-                android:maxLines="2"/>
+                android:textSize="17sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="2sp"
+                android:maxLines="2"
+                android:ellipsize="end"/>
 
-            <TextView
-                android:id="@+id/txtSemester"
+            <!-- Meta row: semester · year · branch as one compact, icon-led line -->
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="#616161"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/txtSemester"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txtAcademicYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#616161"/>
+                android:layout_marginTop="2dp"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"/>
 
             <TextView
                 android:id="@+id/txtBranch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#616161"/>
+                android:layout_marginTop="2dp"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"/>
 
             <TextView
                 android:id="@+id/txtExamType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="5dp"
-                android:backgroundTint="#1565C0"
                 android:background="@drawable/bg_badge"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"/>
+                android:backgroundTint="@color/badge_bg"
+                android:textColor="@color/brand_blue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02"/>
 
         </LinearLayout>
 
         <!-- RIGHT SIDE -->
 
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:orientation="vertical"
             android:gravity="center">
 
-            <ImageView
-                android:id="@+id/imgPreview"
-                android:layout_width="100dp"
-                android:layout_height="130dp"
-                android:scaleType="centerCrop"
-                android:background="#EEEEEE"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="92dp"
+                android:layout_height="120dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/card_stroke"
+                app:cardBackgroundColor="@color/field_fill">
 
-            <ImageButton
+                <ImageView
+                    android:id="@+id/imgPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDownload"
+                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginTop="10dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_download"/>
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:icon="@drawable/ic_download"
+                app:iconTint="@color/brand_blue"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:backgroundTint="@color/field_fill"
+                app:rippleColor="@color/brand_blue"
+                app:cornerRadius="14dp"/>
 
         </LinearLayout>
 

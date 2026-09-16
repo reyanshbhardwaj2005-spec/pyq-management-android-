@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+    Uses the same @color tokens as the other screens (brand_blue, screen_bg,
+    card_bg, card_stroke, text_primary, text_secondary) so it follows the
+    app-wide theme and switches automatically in dark mode via
+    res/values-night/colors.xml. No new resources needed beyond what you
+    already added for the search and PDF-viewer screens.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="#F4F7FC">
+    android:background="@color/screen_bg">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_toolbar_gradient"
+        android:elevation="4dp"
         app:title="Question Papers"
-        app:navigationIcon="@drawable/baseline_arrow_back"/>
+        app:titleTextColor="@android:color/white"
+        app:titleTextAppearance="@style/ToolbarTitleAppearance"
+        app:navigationIcon="@drawable/baseline_arrow_back"
+        app:navigationIconTint="@android:color/white"/>
+
     <!-- Header Card -->
 
     <com.google.android.material.card.MaterialCardView
@@ -21,7 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardCornerRadius="20dp"
-        app:cardElevation="6dp">
+        app:cardElevation="8dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/card_stroke"
+        app:cardBackgroundColor="@color/card_bg">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +51,7 @@
                 android:text="📚 Question Papers"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#1565C0"/>
+                android:textColor="@color/brand_blue"/>
 
             <TextView
                 android:id="@+id/txtResultCount"
@@ -45,7 +60,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Found 0 papers"
                 android:textSize="16sp"
-                android:textColor="#666666"/>
+                android:textColor="@color/text_secondary"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSearchAgain"
@@ -54,8 +69,11 @@
                 android:layout_marginTop="20dp"
                 android:text="Search Again"
                 android:textAllCaps="false"
-                android:backgroundTint="#1565C0"
-                android:icon="@android:drawable/ic_menu_search"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/brand_blue"
+                app:rippleColor="@color/brand_blue_dark"
+                app:icon="@android:drawable/ic_menu_search"
+                app:iconTint="@android:color/white"
                 app:cornerRadius="50dp"/>
 
         </LinearLayout>
@@ -69,6 +87,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
+        android:indeterminateTint="@color/brand_blue"
         android:visibility="gone"/>
 
     <!-- Papers -->
@@ -79,6 +98,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:paddingBottom="20dp"
         android:layoutAnimation="@anim/layout_animation_fall_down"/>
 
